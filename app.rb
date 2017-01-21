@@ -4,6 +4,8 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 require 'sinatra/activerecord'
+require 'rake'
+
 # создаем подключеие к базе данных! Надо запомнить
 set :database, "sqlite3:barbershop.db"
 
