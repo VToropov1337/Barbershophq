@@ -19,9 +19,25 @@ class Barber < ActiveRecord::Base
   end
 
   # rake db:create_migration NAME=create_barbers
+before do
 
+end 
 
 get '/' do
 	@barbers = Barber.all
 	erb :index 
+end
+
+get '/visit' do
+	erb :visit
+	end
+
+
+post '/visit' do
+
+	@username = params[:username]
+	@phone = params[:phone]
+	@datetime = params[:datetime]
+	@barber = params[:barber]
+	@color = params[:color] 
 end
