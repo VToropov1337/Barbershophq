@@ -1,4 +1,4 @@
-#encoding: utf-8
+ #encoding: utf-8
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
@@ -35,9 +35,9 @@ get '/visit' do
 
 post '/visit' do
 
-	@username = params[:username]
-	@phone = params[:phone]
-	@datetime = params[:datetime]
-	@barber = params[:barber]
-	@color = params[:color] 
+
+	c = Client.new params[:client]
+	c.save
+	
+erb "<h2>Спасибо! Вы записаны!</h2>"
 end
