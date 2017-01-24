@@ -12,7 +12,7 @@ set :database, "sqlite3:barbershop.db"
 
 
 class Client < ActiveRecord::Base
-	validates :name, presence:true
+	validates :name, presence:true, length: { minimum: 3, maximum: 9 }
 	validates :phone, presence:true
 	validates :datestamp, presence:true
 	validates :color, presence:true  
@@ -48,4 +48,21 @@ post '/visit' do
 		@error = @c.errors.full_messages.first
 		erb :visit
 	end
+end
+
+
+get '/barber/:id' do
+	@barber = Barber.find(params[:id])
+	erb :barb
+end
+
+
+get '/bookings' do
+	@clients = Client.order('created_at DESC')
+	erb :bookings
+end
+
+get '/client/:id' do
+	@client = Client.find(params[:id])
+	erb :client
 end
