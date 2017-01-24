@@ -15,7 +15,7 @@ class Client < ActiveRecord::Base
 	validates :name, presence:true
 	validates :phone, presence:true
 	validates :datestamp, presence:true
-	validates :color, presence:true
+	validates :color, presence:true  
 end
 # rake db:create_migration NAME=create_clients
 
@@ -41,7 +41,9 @@ post '/visit' do
 
 
 	c = Client.new params[:client]
-	c.save
-	
-erb "<h2>Спасибо! Вы записаны!</h2>"
+	if c.save
+		erb "<h2> ok, everything good </h2>"
+	else
+		erb "<h2> WRONG! </h2"
+	end
 end
